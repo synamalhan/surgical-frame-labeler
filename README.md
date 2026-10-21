@@ -1,6 +1,6 @@
 # Surgical Frame Labeler
 
-A containerized pipeline that extracts frames from a surgical video and labels each one with a zero-shot **CLIP** vision-language model. It is built as a Docker learning project for the ASU capstone Developing Vision-Language Models for Surgical Video Analysis.
+A containerized pipeline that extracts frames from a surgical video and labels each one with a zero-shot CLIP vision-language model. It is built as a Docker learning project for the ASU capstone Developing Vision-Language Models for Surgical Video Analysis.
 
 ## Architecture
 
