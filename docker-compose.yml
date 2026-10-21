@@ -1,0 +1,24 @@
+services:
+  inference:
+    build: ./inference
+    volumes:
+      - ./data:/data
+    healthcheck:
+      # slim images have no curl, so use Python for the check
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  ui:
+    build: ./ui
+    ports:
+      - "8501:8501"
+    environment:
+      - INFERENCE_URL=http://inference:8000  # Compose DNS: services reach each other by name
+    volumes:
+      - ./data:/data:ro  # read-only: the UI only displays what inference wrote
+    depends_on:
+      inference:
+        condition: service_healthy
